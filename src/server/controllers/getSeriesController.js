@@ -5,7 +5,7 @@ const Serie = require("../../dataBase/models/Serie");
 const getSeriesController = async (req, res, next) => {
   try {
     const series = await Serie.find();
-    res.status(200).json({ platforms: series });
+    res.status(200).json({ series });
     debug(`These are all the series: ${series}`);
   } catch (error) {
     debug(chalk.red(`Error: `, error.message));
