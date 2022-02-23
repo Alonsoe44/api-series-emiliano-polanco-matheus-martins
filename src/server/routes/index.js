@@ -1,5 +1,8 @@
 const express = require("express");
+const getPlatformsController = require("../controllers/getPlatformsController");
 
-const route = express.Router();
+const platformRouter = express.Router();
 
-module.exports = route;
+platformRouter.get("/", getPlatformsController);
+
+module.exports = platformRouter;

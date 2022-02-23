@@ -17,11 +17,11 @@ const connectDataBase = (connectionString) => {
     });
     mongoose.connect(connectionString, (error) => {
       if (error) {
-        debug(chalk.bold.bgMagenta.redBright(`Unable to connect Database`));
+        debug(chalk.bold.yellowBright(`Unable to connect Database`));
         reject(error);
         return;
       }
-      debug(chalk.bold.bgMagenta.greenBright(`Database connected`));
+      debug(chalk.bold.greenBright(`Database connected`));
       resolve();
     });
   });
