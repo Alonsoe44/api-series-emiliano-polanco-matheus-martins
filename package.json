@@ -30,8 +30,8 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "jest": "^27.5.1",
-    "mongodb-memory-server": "^8.4.0",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^8.4.0",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
