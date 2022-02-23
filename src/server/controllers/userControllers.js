@@ -5,15 +5,15 @@ const User = require("../../dataBase/models/User");
 const secret = process.env.JWT_SECRET;
 
 const loginController = async (req, res, next) => {
-  const loginErrorChain = () => {
+  const loginErrorProtocol = () => {
     const loginError = new Error("Wrong credentials");
-    loginError.status(401);
+    loginError.status = 401;
     next(loginError);
   };
   const { username, password } = req.body;
-  const userFounded = User.findOne({ username });
+  const userFounded = await User.findOne({ username });
   if (userFounded) {
-    const passwordMatch = bcrypt.compare(password, userFounded.password);
+    const passwordMatch = await bcrypt.compare(password, userFounded.password);
     if (passwordMatch) {
       const payloadUser = {
         name: userFounded.name,
@@ -22,10 +22,10 @@ const loginController = async (req, res, next) => {
       const token = jwt.sign(payloadUser, secret);
       res.json({ token });
     } else {
-      loginErrorChain();
+      loginErrorProtocol();
     }
   } else {
-    loginErrorChain();
+    loginErrorProtocol();
   }
 };
 
