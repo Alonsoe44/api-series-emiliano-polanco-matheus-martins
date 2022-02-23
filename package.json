@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "start-dev": "nodemon . -q",
+    "start-dev": "nodemon src/index.js -q",
     "test": "npx jest --watchAll --verbose",
     "test-coverage": "npx jest --coverage --watchAll",
     "prepare": "husky install"
@@ -27,6 +27,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jest": "^27.5.1",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "nodemon": "^2.0.15"
   }
 }
