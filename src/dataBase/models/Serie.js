@@ -8,7 +8,7 @@ const SerieSchema = new Schema({
   platform: {
     type: [Schema.Types.ObjectId],
     default: undefined,
-    ref: "user",
+    ref: "platform",
   },
 });
 
