@@ -1,4 +1,4 @@
-const debug = require("debug")("streaming-app:errors");
+const debug = require("debug")("streaming-app:platformsController");
 const chalk = require("chalk");
 const Platform = require("../../dataBase/models/Platform");
 
