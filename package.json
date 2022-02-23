@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "node src/index.js",
     "start-dev": "nodemon . -q",
     "test": "npx jest --watchAll --verbose",
-    "test-coverage": "npx jest --coverage --watchAll"
+    "test-coverage": "npx jest --coverage --watchAll",
     "prepare": "husky install"
   },
   "keywords": [],
