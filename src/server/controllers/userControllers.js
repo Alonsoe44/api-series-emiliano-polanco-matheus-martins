@@ -1,5 +1,4 @@
 require("dotenv").config();
-const debug = require("debug")("streaming-app:controllerUser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../dataBase/models/User");
@@ -33,25 +32,34 @@ const loginController = async (req, res, next) => {
 
 const registerController = async (req, res, next) => {
   const { name, username, password } = req.body;
-  debug("Iam a debvugge");
-  debug(name);
-  debug(username);
-  const repitedUser = await User.findOne({ username });
-  debug(repitedUser);
-  if (repitedUser) {
-    const error = new Error("The userfdsname isn't avaliable");
+  if (!name || !username || !password) {
+    const error = new Error("You must have a name, username and password");
     error.status = 400;
     next(error);
   } else {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const repitedUser = await User.findOne({ username });
 
-    const newUser = {
-      name,
-      username,
-      password: hashedPassword,
-    };
-    await User.create(newUser);
-    res.json({ message: "Creation completed" });
+    if (repitedUser) {
+      const error = new Error("The username isn't avaliable");
+      error.status = 400;
+      next(error);
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = {
+        name,
+        username,
+        password: hashedPassword,
+      };
+
+      const createdUser = await User.create(newUser);
+      const payloadUser = {
+        name: createdUser.name,
+        id: createdUser.id,
+      };
+
+      const token = await jwt.sign(payloadUser, secret);
+      res.json({ token });
+    }
   }
 };
 module.exports = { loginController, registerController };
