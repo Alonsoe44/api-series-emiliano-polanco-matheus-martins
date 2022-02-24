@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "start-dev": "nodemon src/index.js -q",
-    "test": "npx jest --watchAll --verbose",
-    "test-coverage": "npx jest --coverage --watchAll",
+    "test": "npx jest --runInBand --verbose --detectOpenHandles",
+    "test-coverage": "npx jest --coverage",
     "prepare": "husky install"
   },
   "keywords": [],
