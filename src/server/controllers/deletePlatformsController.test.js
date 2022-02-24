@@ -6,7 +6,6 @@ const connectDataBase = require("../../dataBase");
 const app = require("..");
 const Platform = require("../../dataBase/models/Platform");
 const User = require("../../dataBase/models/User");
-const { find } = require("../../dataBase/models/Platform");
 
 let mongoServer;
 let userToken;
