@@ -20,7 +20,7 @@ const loginController = async (req, res, next) => {
         id: userFounded.id,
       };
       const token = jwt.sign(payloadUser, secret);
-      res.json({ token }).status(200);
+      res.status(200).json({ token });
     } else {
       loginErrorProtocol();
     }
