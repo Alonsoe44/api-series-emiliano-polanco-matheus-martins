@@ -5,6 +5,7 @@ const request = require("supertest");
 const app = require("..");
 const connectDataBase = require("../../dataBase");
 const Platform = require("../../dataBase/models/Platform");
+const getPlatformsController = require("./getPlatformsController");
 
 let mongoServer;
 
@@ -28,6 +29,31 @@ describe("Given a /platforms endpoint", () => {
   describe("When it receives a GET request", () => {
     test("Then it should reply with a 200 status code", async () => {
       await request(app).get("/platforms/").expect(200);
+    });
+  });
+});
+
+describe("Given a getPlatforms controller", () => {
+  describe("When it's called with res", () => {
+    test("Then it should call method res.json", async () => {
+      const dataBasePlatform = {
+        name: "Dexter",
+      };
+
+      Platform.find = jest.fn().mockResolvedValue(dataBasePlatform);
+      const platforms = await Platform.find();
+
+      const res = {
+        status: jest.fn().mockImplementation(() => res),
+        json: jest.fn(),
+      };
+
+      const req = null;
+      const next = null;
+
+      await getPlatformsController(req, res, next);
+
+      expect(res.json).toHaveBeenCalledWith({ platforms });
     });
   });
 });
