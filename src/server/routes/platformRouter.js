@@ -8,6 +8,6 @@ const platformRouter = express.Router();
 
 platformRouter.get("/", getPlatformsController);
 platformRouter.post("/", isAdmin, postPlatformsController);
-platformRouter.delete("/:idPlatform", isAdmin, deletePlatformsController);
+platformRouter.delete("/:id", isAdmin, deletePlatformsController);
 
 module.exports = platformRouter;
