@@ -41,7 +41,7 @@ afterAll(async () => {
 
 describe("Given an endpoint /platforms/", () => {
   describe("When it receives a POST request when the user is logged and has a token", () => {
-    test("Then it should respond with status 201 and a list of platforms", async () => {
+    test.only("Then it should respond with status 201 and a list of platforms", async () => {
       const platformToBeCreated = {
         name: "Netflixy",
       };
@@ -52,7 +52,7 @@ describe("Given an endpoint /platforms/", () => {
         .set("Authorization", `Bearer ${userToken}`)
         .expect(201);
 
-      expect(body).toHaveProperty("name");
+      expect(body).toHaveProperty("name", platformToBeCreated.name);
     });
   });
 });
